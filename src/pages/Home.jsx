@@ -16,14 +16,8 @@ import {
 import { useState } from "react";
 import { addUser } from "../features/usersSlice";
 import { useDispatch } from "react-redux";
-
-const genres = [
-  { value: "action", label: "Ação" },
-  { value: "horror", label: "Terror" },
-  { value: "suspense", label: "Suspense" },
-  { value: "adventure", label: "Aventura" },
-  { value: "hero", label: "Herói" },
-];
+import { Link } from "react-router-dom";
+import { genres } from "../config";
 
 const emptyUser = {
   name: "",
@@ -70,7 +64,10 @@ const Home = () => {
         <Typography align="center" variant="h1">
           Pesquisa sobre filmes favoritos
         </Typography>
-        <Button variant="contained">Ver resultados</Button>
+
+        <Link to="/details">
+          <Button variant="contained">Ver resultados</Button>
+        </Link>
       </Box>
 
       <form id="user-form">
