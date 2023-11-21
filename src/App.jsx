@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addMovie } from "./features/moviesSlice";
+import Home from "./pages/Home";
 
 function App() {
   const movies = useSelector((state) => state.movies);
@@ -9,7 +10,11 @@ function App() {
     dispatch(addMovie({ name: "new movie", genre: "terror", duration: 120 }));
   };
 
-  return <></>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }
 
 export default App;
