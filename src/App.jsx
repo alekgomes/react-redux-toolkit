@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addMovie } from "./features/moviesSlice";
+import { addUser } from "./features/usersSlice";
 import Home from "./pages/Home";
 
 function App() {
-  const movies = useSelector((state) => state.movies);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(addMovie({ name: "new movie", genre: "terror", duration: 120 }));
+    dispatch(addUser({ name: "new movie", genre: "terror", duration: 120 }));
   };
 
   return (

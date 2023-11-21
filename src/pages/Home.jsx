@@ -14,6 +14,8 @@ import {
   Button,
 } from "@mui/material";
 import { useState } from "react";
+import { addUser } from "../features/usersSlice";
+import { useDispatch } from "react-redux";
 
 const genres = [
   { value: "action", label: "Ação" },
@@ -23,16 +25,18 @@ const genres = [
   { value: "hero", label: "Herói" },
 ];
 
+const emptyUser = {
+  name: "",
+  genre: "",
+  prefered: [],
+};
+
 const Home = () => {
-  const [user, setUser] = useState({
-    name: "",
-    genre: "",
-    prefered: [],
-  });
+  const [user, setUser] = useState(emptyUser);
+  const dispatch = useDispatch();
 
   const handleTextChange = ({ target }) => {
     const { value, name } = target;
-
     setUser({ ...user, [name]: value });
   };
 
@@ -49,7 +53,10 @@ const Home = () => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    dispatch(addUser(user));
+    setUser(emptyUser);
+  };
 
   return (
     <Container maxWidth="lg">
@@ -80,6 +87,7 @@ const Home = () => {
               name="name"
               id="user-name"
               label="Nome"
+              value={user.name}
               onChange={handleTextChange}
             />
           </FormControl>
@@ -111,6 +119,7 @@ const Home = () => {
                       value={value}
                       name="movie-genre"
                       onChange={handleCheckBoxChange}
+                      checked={user.prefered.includes(value)}
                     />
                   }
                   label={label}
