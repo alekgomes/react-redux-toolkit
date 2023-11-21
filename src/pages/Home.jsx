@@ -17,6 +17,8 @@ import { useState } from "react";
 import { addUser } from "../features/usersSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 import { genres } from "../config";
 
 const emptyUser = {
@@ -28,6 +30,7 @@ const emptyUser = {
 const Home = () => {
   const [user, setUser] = useState(emptyUser);
   const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
 
   const handleTextChange = ({ target }) => {
     const { value, name } = target;
@@ -47,7 +50,7 @@ const Home = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const onSubmit = () => {
     dispatch(addUser(user));
     setUser(emptyUser);
   };
@@ -70,7 +73,7 @@ const Home = () => {
         </Link>
       </Box>
 
-      <form id="user-form">
+      <form id="user-form" onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
             display: "flex",
@@ -81,7 +84,7 @@ const Home = () => {
         >
           <FormControl fullWidth>
             <TextField
-              name="name"
+              {...register("name", { required: true })}
               id="user-name"
               label="Nome"
               value={user.name}
@@ -91,10 +94,10 @@ const Home = () => {
           <FormControl fullWidth>
             <InputLabel id="user-genre-label">Seu gênero</InputLabel>
             <Select
+              {...register("genre", { required: true, value: true })}
               labelId="user-genre-label"
               id="user-genre-selector"
               label="Seu gênero"
-              name="genre"
               value={user.genre}
               onChange={handleTextChange}
             >
@@ -125,7 +128,7 @@ const Home = () => {
             </Box>
           </FormGroup>
           <FormControl>
-            <Button variant="outlined" onClick={handleSubmit}>
+            <Button variant="outlined" type="submit">
               Enviar
             </Button>
           </FormControl>
