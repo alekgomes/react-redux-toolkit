@@ -14,8 +14,8 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "react-router-dom";
-
 import { useSelector } from "react-redux";
+import { peopleGenres } from "../config";
 
 const Details = () => {
   const users = useSelector((state) => state.users);
@@ -74,7 +74,7 @@ const Details = () => {
               <TableHead>
                 <TableRow>
                   <TableCell align="left">Gênero</TableCell>
-                  <TableCell align="left">Votos</TableCell>
+                  <TableCell align="right">Votos</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -112,7 +112,7 @@ const Details = () => {
                 <Typography>{user.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <TableContainer component={Paper}>
+                <TableContainer>
                   <Table aria-label="table">
                     <TableHead>
                       <TableRow>
@@ -127,10 +127,10 @@ const Details = () => {
                         }}
                       >
                         <TableCell component="th" scope="row">
-                          {user.genre}
+                          {peopleGenres[user.genre]}
                         </TableCell>
                         <TableCell align="right">
-                          {user.prefered.join(",")}
+                          {user.prefered.join(", ") || "Sem filmes preferidos"}
                         </TableCell>
                       </TableRow>
                     </TableBody>

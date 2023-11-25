@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { genres } from "../config";
+import { movieGenres } from "../config";
 
 const emptyUser = {
   name: "",
@@ -111,7 +111,7 @@ const Home = () => {
               Gêneros preferidos de filme
             </FormLabel>
             <Box>
-              {genres.map(({ label, value }, idx) => (
+              {movieGenres.map(({ label, value }, idx) => (
                 <FormControlLabel
                   key={idx}
                   control={
