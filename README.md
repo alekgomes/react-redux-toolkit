@@ -31,4 +31,20 @@ Nessa arquitetura, os componentes React atuam como se existisse uma API verdadei
 [React Hook Form](https://react-hook-form.com/) | Validação de inputs
 
 
+---
 
+### Iniciando o projeto
+
+Para iniciar esse projeto localmente:
+- Clone esse repositório
+```shell
+git clone https://github.com/alekgomes/react-redux-toolkit
+```
+- Instale as dependências
+```shell
+npm install
+```
+- Inicie o projeto
+```shell
+npm run dev
+```
