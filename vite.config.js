@@ -16,4 +16,9 @@ export default defineConfig({
       "@pages": `${path.resolve(__dirname, "./src/pages")}`,
     },
   },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./src/setupTests.js"],
+  },
 });
