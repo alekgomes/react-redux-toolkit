@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useAddUserMutation } from "../features/userApi";
+import { useAddUserMutation } from "@features/userApi";
 import { movieGenres } from "../config";
 
 const emptyUser = {

@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "react-router-dom";
 import { peopleGenres } from "../config";
-import { useGetUsersQuery } from "../features/userApi";
+import { useGetUsersQuery } from "@features/userApi";
 import { useEffect } from "react";
 
 const Details = () => {
