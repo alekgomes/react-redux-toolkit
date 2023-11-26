@@ -14,11 +14,9 @@ import {
   Button,
 } from "@mui/material";
 import { useState } from "react";
-import { addUser } from "../features/usersSlice";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { useAddUserMutation } from "../features/userApi";
 import { movieGenres } from "../config";
 
 const emptyUser = {
@@ -29,8 +27,8 @@ const emptyUser = {
 
 const Home = () => {
   const [user, setUser] = useState(emptyUser);
-  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const [updateUser] = useAddUserMutation();
 
   const handleTextChange = ({ target }) => {
     const { value, name } = target;
@@ -50,8 +48,8 @@ const Home = () => {
     }
   };
 
-  const onSubmit = () => {
-    dispatch(addUser(user));
+  const onSubmit = async () => {
+    await updateUser(user);
     setUser(emptyUser);
   };
 
@@ -94,7 +92,7 @@ const Home = () => {
           <FormControl fullWidth>
             <InputLabel id="user-genre-label">Seu gênero</InputLabel>
             <Select
-              {...register("genre", { required: true, value: true })}
+              {...register("genre", { required: true })}
               labelId="user-genre-label"
               id="user-genre-selector"
               label="Seu gênero"

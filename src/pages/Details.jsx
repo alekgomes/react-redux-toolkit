@@ -14,13 +14,20 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { peopleGenres } from "../config";
+import { useGetUsersQuery } from "../features/userApi";
+import { useEffect } from "react";
 
 const Details = () => {
-  const users = useSelector((state) => state.users);
-  const flatten = users.map((user) => user.prefered).flat();
+  const { data: users, refetch } = useGetUsersQuery({
+    refetchOnFocus: true,
+  });
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  const flatten = users?.map((user) => user.prefered).flat() ?? [];
   const initialPrefered = {
     hero: {
       count: 0,
@@ -102,7 +109,7 @@ const Details = () => {
             Participantes
           </Typography>
 
-          {users.map((user, idx) => (
+          {users?.map((user, idx) => (
             <Accordion key={idx}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
